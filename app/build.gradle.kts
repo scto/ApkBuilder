@@ -4,17 +4,10 @@ plugins {
 
 android {
     namespace = "com.apk.builder"
-    
-    // Modernisierte Syntax: 'compileSdk' als Property statt als Funktion
-    // Aktualisiert auf 34 (Android 14), da 30 veraltet ist.
     compileSdk = 34 
-    
-    // 'buildToolsVersion' kann komplett entfernt werden, das Android Gradle Plugin 
-    // verwendet automatisch die optimal passende Version.
 
     defaultConfig {
         applicationId = "com.apk.builder"
-        // Modernisierte Syntax
         minSdk = 26
         targetSdk = 34 
         versionCode = 1
@@ -48,18 +41,29 @@ android {
 }
 
 dependencies {
-    // Falls du wirklich lokale JARs im libs-Ordner hast
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
-    // Modernisierte UI-Bibliotheken (aktuelle Versionen)
+    // --- 1. Moderne AndroidX & UI Komponenten ---
+    // (Diese ziehen automatisch viewpager, drawerlayout, lifecycle, savedstate etc. nach sich)
+    implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    
-    // HINWEIS: sdklib:25.3.0 ist extrem alt (von ca. 2017). 
-    // Falls du die Android Tools zwingend brauchst, nutze eine aktuellere Version:
-    implementation("com.android.tools:sdklib:31.4.2") 
+    implementation("androidx.activity:activity-ktx:1.9.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.1")
 
-    // Deine benötigten Bibliotheken aus unserem vorherigen Schritt:
+    // --- 2. Google Guava (ersetzt den 'guava-30.1.1-jre' Ordner) ---
+    implementation("com.google.guava:guava:33.2.1-android")
+
+    // --- 3. Android Build Tools & Bundletool ---
+    // (Ersetzt die Ordner 'common', 'bundletool' und 'sdklib')
+    implementation("com.android.tools:common:31.4.2")
+    implementation("com.android.tools:sdklib:31.4.2")
+    implementation("com.android.tools.build:bundletool:1.15.6")
+
+    // --- 4. ASM Support für Bytecode-Verarbeitung ---
+    // (Ersetzt den 'asmsupport' Ordner)
+    implementation("org.ow2.asm:asm:9.7")
+    implementation("org.ow2.asm:asm-commons:9.7")
+
+    // --- 5. Deine Projekt-spezifischen Bibliotheken (wie zuvor besprochen) ---
     implementation("org.apache.commons:commons-compress:1.26.0")
     implementation("org.eclipse.lsp4j:org.eclipse.lsp4j:0.22.0")
     implementation("io.github.Rosemoe.sora-editor:editor:0.23.2")
