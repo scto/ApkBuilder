@@ -61,6 +61,9 @@ dependencies {
     // HIER FEHLTE DER APK SIGNER IM VORHERIGEN SCHRITT:
     implementation("com.android.tools.build:apksig:8.4.2")
 
+    // --- R8 Compiler (für Dexing & Code Shrinking) ---
+    implementation("com.android.tools:r8:8.3.37")
+
     // --- 4. ASM Support für Bytecode-Verarbeitung ---
     implementation("org.ow2.asm:asm:9.7")
     implementation("org.ow2.asm:asm-commons:9.7")
