@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.net.Uri;
 
+/*
 import com.android.sdklib.build.ApkBuilder;
 import com.android.sdklib.build.ApkCreationException;
 import com.android.sdklib.build.DuplicateFileException;
 import com.android.sdklib.build.SealedApkException;
+*/
 
 import com.apk.builder.R;
 import com.apk.builder.model.*;
@@ -90,33 +92,33 @@ public class CompilerAsyncTask extends AsyncTask<Project, String, CompilerResult
 		    File resPath = new File(binDir, "generated.apk.res");
 		    
 		    File dexFile = new File(binDir, "classes.dex");
-		    ApkBuilder builder = new ApkBuilder(apkPath, resPath, dexFile, null, null);
-			
-			File[] binFiles = binDir.listFiles();
-			for (File file : binFiles) {
-			    if (!file.getName().equals("classes.dex") && file.getName().endsWith(".dex")) {
-			        builder.addFile(file, Uri.parse(file.getAbsolutePath()).getLastPathSegment());
-					project.getLogger().d("APK Builder", "Adding dex file " + file.getName() + " to APK.");
-			    }
-			}
-			for (Library library : project.getLibraries()) {
-			    builder.addResourcesFromJar(new File(library.getPath(), "classes.jar"));
-				
-				project.getLogger().d("APK Builder", "Adding resources of " + library.getName() + " to the APK");
-			}
-			
-			File nativeLibs = project.getNativeLibrariesFile();
-			if (nativeLibs != null && nativeLibs.exists()) {
-				builder.addNativeLibraries(nativeLibs);
-			}
-			builder.setDebugMode(false);
-			builder.sealApk();
+		    
+		    // ApkBuilder builder = new ApkBuilder(apkPath, resPath, dexFile, null, null);
+			// 
+			// File[] binFiles = binDir.listFiles();
+			// for (File file : binFiles) {
+			//     if (!file.getName().equals("classes.dex") && file.getName().endsWith(".dex")) {
+			//         builder.addFile(file, Uri.parse(file.getAbsolutePath()).getLastPathSegment());
+			// 		   project.getLogger().d("APK Builder", "Adding dex file " + file.getName() + " to APK.");
+			//     }
+			// }
+			// for (Library library : project.getLibraries()) {
+			//     builder.addResourcesFromJar(new File(library.getPath(), "classes.jar"));
+			// 	
+			// 	   project.getLogger().d("APK Builder", "Adding resources of " + library.getName() + " to the APK");
+			// }
+			// 
+			// File nativeLibs = project.getNativeLibrariesFile();
+			// if (nativeLibs != null && nativeLibs.exists()) {
+			// 	   builder.addNativeLibraries(nativeLibs);
+			// }
+			// builder.setDebugMode(false);
+			// builder.sealApk();
 		        
 	        project.getLogger().d("APK Signer", "Signing APK");
-			
-			 //sign the app
+
+			//sign the app
 	        new ApkSigner(project, apkPath.getAbsolutePath(), binDir + "/signed.apk" , ApkSigner.Mode.TEST).sign();
-			
 			
 			long time = System.currentTimeMillis() - startTime;
 			
