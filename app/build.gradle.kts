@@ -3,13 +3,14 @@ plugins {
 }
 
 android {
+    compileSdkVersion(30)
+    buildToolsVersion = "30.0.3"
     namespace = "com.apk.builder"
-    compileSdk = 30
 
     defaultConfig {
         applicationId = "com.apk.builder"
-        minSdk = 26
-        targetSdk = 30
+        minSdkVersion(26)
+        targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0.0"
     }
@@ -26,17 +27,17 @@ android {
         }
     }
     
-    packagingOptions {
-        exclude("META-INF/DEPENDENCIES.txt")
-        exclude("META-INF/NOTICE")
-        exclude("META-INF/NOTICE.txt")
-        exclude("META-INF/LICENSE")
-        exclude("META-INF/LICENSE.txt")
+    packaging {
+        resources.excludes.add("META-INF/DEPENDENCIES.txt")
+        resources.excludes.add("META-INF/NOTICE")
+        resources.excludes.add("META-INF/NOTICE.txt")
+        resources.excludes.add("META-INF/LICENSE")
+        resources.excludes.add("META-INF/LICENSE.txt")
     }
     
     dependenciesInfo {
-        isIncludeInApk = false
-        isIncludeInBundle = false
+        includeInApk = false
+        includeInBundle = false
     }
 }
 
