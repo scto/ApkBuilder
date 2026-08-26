@@ -42,28 +42,30 @@ android {
 
 dependencies {
     // --- 1. Moderne AndroidX & UI Komponenten ---
-    // (Diese ziehen automatisch viewpager, drawerlayout, lifecycle, savedstate etc. nach sich)
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.fragment:fragment-ktx:1.8.1")
 
-    // --- 2. Google Guava (ersetzt den 'guava-30.1.1-jre' Ordner) ---
-    implementation("com.google.guava:guava:33.2.1-android")
+    // --- 2. Google Guava (Mit Fix für Duplicate Class Fehler) ---
+    implementation("com.google.guava:guava:33.2.1-android") {
+        exclude(group = "com.google.guava", module = "listenablefuture")
+    }
 
-    // --- 3. Android Build Tools & Bundletool ---
-    // (Ersetzt die Ordner 'common', 'bundletool' und 'sdklib')
+    // --- 3. Android Build Tools, Bundletool & APK-Signer ---
     implementation("com.android.tools:common:31.4.2")
     implementation("com.android.tools:sdklib:31.4.2")
     implementation("com.android.tools.build:bundletool:1.15.6")
+    
+    // HIER FEHLTE DER APK SIGNER IM VORHERIGEN SCHRITT:
+    implementation("com.android.tools.build:apksig:8.4.2")
 
     // --- 4. ASM Support für Bytecode-Verarbeitung ---
-    // (Ersetzt den 'asmsupport' Ordner)
     implementation("org.ow2.asm:asm:9.7")
     implementation("org.ow2.asm:asm-commons:9.7")
 
-    // --- 5. Deine Projekt-spezifischen Bibliotheken (wie zuvor besprochen) ---
+    // --- 5. Deine Projekt-spezifischen Bibliotheken ---
     implementation("org.apache.commons:commons-compress:1.26.0")
     implementation("org.eclipse.lsp4j:org.eclipse.lsp4j:0.22.0")
     implementation("io.github.Rosemoe.sora-editor:editor:0.23.2")
