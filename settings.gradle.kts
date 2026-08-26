@@ -12,13 +12,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url = uri("https://repo.gradle.org/gradle/libs-releases") }
-        maven { url = uri("https://jitpack.io") } // WICHTIG!
-    }
+        // JitPack ist extrem wichtig für den Angads25 FilePicker!
+        maven { url = uri("https://jitpack.io") } 
     }
 }
 
 rootProject.name = "ApkBuilder"
 
-include(
-    ":app"
-)
+include(":app")
