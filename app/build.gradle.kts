@@ -49,4 +49,17 @@ dependencies {
     implementation("com.android.tools:sdklib:25.3.0")
     implementation("com.android.tools:r8:2.2.64")
     implementation("org.eclipse.jdt.core.compiler:ecj:4.6.1")
+
+    // Apache Commons Compress
+    implementation("org.apache.commons:commons-compress:1.26.0") // Aktuellste Version prüfen
+
+    // Eclipse LSP4J (Language Server Protocol)
+    implementation("org.eclipse.lsp4j:org.eclipse.lsp4j:0.22.0") // Aktuellste Version prüfen
+
+    // Rosemoe Sora Editor
+    implementation("io.github.Rosemoe.sora-editor:editor:0.23.2") // Aktuellste Version prüfen
+    implementation("io.github.Rosemoe.sora-editor:language-java:0.23.2")
+
+    // Angads25 FilePicker (benötigt JitPack Repository)
+    implementation("com.github.angads25:filepicker:1.1.1") 
 }
