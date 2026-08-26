@@ -1,12 +1,11 @@
-
-<manifest
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.apk.builder">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-	   <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    
 	<application
 		android:allowBackup="true"
 		android:name="com.apk.builder.ApplicationLoader"
@@ -15,6 +14,7 @@
 		android:icon="@drawable/app_icon"
 		android:extractNativeLibs="true"
 		android:theme="@style/AppTheme">
+        
 		<activity
 			android:name="com.tyron.ide.MainActivity"
 			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
@@ -30,5 +30,7 @@
 		<service
 		    android:name=".CompilerService">
 		</service>
+        
 	</application>
+    
 </manifest>

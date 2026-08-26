@@ -1,22 +1,29 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.android.application)
 }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion = "30.0.3"
-    
+    namespace = "com.apk.builder"
+    compileSdk = 30
+
     defaultConfig {
         applicationId = "com.apk.builder"
-        minSdkVersion(26)
-        targetSdkVersion(30)
+        minSdk = 26
+        targetSdk = 30
         versionCode = 1
         versionName = "1.0.0"
     }
-    
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
     }
     
     packagingOptions {
@@ -25,13 +32,6 @@ android {
         exclude("META-INF/NOTICE.txt")
         exclude("META-INF/LICENSE")
         exclude("META-INF/LICENSE.txt")
-    }
-    
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
     }
     
     dependenciesInfo {
