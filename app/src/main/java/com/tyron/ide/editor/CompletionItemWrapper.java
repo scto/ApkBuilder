@@ -1,6 +1,6 @@
 package com.tyron.ide.editor;
 
-import io.github.rosemoe.editor.struct.CompletionItem;
+import io.github.rosemoe.sora.lang.completion.CompletionItem;
 
 import org.eclipse.lsp4j.TextEdit;
 
